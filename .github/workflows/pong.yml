@@ -1,0 +1,17 @@
+name: Pong
+env:
+  REPO_OWNER: dvag-behar-bullaku
+  REPO_NAME: webhook-for-jenkins
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
+on:
+  repository_dispatch:
+    types: [run-pong]
+jobs:
+  pong:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: npm ci
+      - name: Run Pong
+        run: npm run pong
